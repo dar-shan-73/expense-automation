@@ -1,3 +1,5 @@
+#!/bin/bash
+
 dnf install nginx -y
 cp proxy.conf /etc/nginx/default.d/expense.conf
 
