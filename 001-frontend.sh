@@ -27,7 +27,7 @@ cd /usr/share/nginx/html
 echo "extracting frontend"
 unzip /tmp/frontend.zip &>> /tmp/frontend.log
 pwd
-ls -ltr
+ls -ltr &>> /tmp/frontend.log
 
 echo "starting frontend"
 systemctl restart nginx &>> /tmp/frontend.log
