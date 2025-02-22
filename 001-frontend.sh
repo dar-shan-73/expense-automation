@@ -3,7 +3,7 @@
 ID=$(id -u)
 
 if [ "$ID" -ne 0 ] ; then
-    echo -e "\e[31m script is expected to execute as root user \e[0m"
+    echo -e "\e[31m script is expected to be executed as root user \e[0m"
     exit 1
 fi
 
