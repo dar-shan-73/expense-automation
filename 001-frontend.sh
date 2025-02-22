@@ -1,6 +1,7 @@
 #!/bin/bash
 
-ID=$(id -u)
+ID="id -u"
+LOG="/tmp/frontend.log"
 
 stat () {
     if [ $1 -eq 0 ] ; then
@@ -18,7 +19,7 @@ if [ "$ID" -ne 0 ] ; then
 fi
 
 echo "Installing nginx"
-dnf install nginx -y &>> /tmp/frontend.log
+dnf install nginx -y &>> $LOG
 stat $?     
 
 echo "copying proxy file"
@@ -27,11 +28,11 @@ cp proxy.conf /etc/nginx/default.d/expense.conf &>> /tmp/frontend.log
 stat $?      
 
 echo "enabling nginx"
-systemctl enable nginx &>> /tmp/frontend.log
+systemctl enable nginx &>> $LOG
 stat $? 
 
 echo "performing a cleanup"
-rm -rf /usr/share/nginx/html/* &>> /tmp/frontend.log
+rm -rf /usr/share/nginx/html/* &>> $LOG
 stat $? 
 
 echo "downloading frontend"
@@ -40,14 +41,14 @@ stat $?
 cd /usr/share/nginx/html
 
 echo "extracting frontend"
-unzip /tmp/frontend.zip &>> /tmp/frontend.log
+unzip /tmp/frontend.zip &>> $LOG
 stat $? 
 
-pwd &>> /tmp/frontend.log
-ls -ltr &>> /tmp/frontend.log
+pwd &>> $LOG
+ls -ltr &>> $LOG
 
 echo "starting frontend"
-systemctl restart nginx &>> /tmp/frontend.log
+systemctl restart nginx &>> $LOG
 stat $? 
 
 echo -e "\n\t \e[33m *frontend installation is completed* \e[0m"
