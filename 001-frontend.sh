@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ID="id -u"
+ID=$(id -u)
 LOG="/tmp/frontend.log"
 
 stat () {
