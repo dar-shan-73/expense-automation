@@ -23,7 +23,7 @@ if [ -f proxy.conf ] ; then
 stat $?
 
 else
-    echo -e "\e[31m file is not present, ensure you provide the file \e[0m"
+    echo -e "\e[31m proxy.conf file is not present, ensure you provide the file \e[0m"
     exit 1
 fi    
 
