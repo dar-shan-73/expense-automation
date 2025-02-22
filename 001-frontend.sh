@@ -11,8 +11,14 @@ fi
 echo "Installing nginx"
 dnf install nginx -y &>> /tmp/frontend.log
 
+if [ $? -eq 0 ] ; then
+    echo -e "\e[31m --success-- \e[0m"
+
 echo "copying proxy file"
 cp proxy.conf /etc/nginx/default.d/expense.conf &>> /tmp/frontend.log
+
+if [$? -eq 0 ] ; then
+    echo -e "\e[31m --success-- \e[0m"
 
 echo "enabling nginx"
 systemctl enable nginx &>> /tmp/frontend.log
@@ -26,7 +32,7 @@ cd /usr/share/nginx/html
 
 echo "extracting frontend"
 unzip /tmp/frontend.zip &>> /tmp/frontend.log
-pwd
+pwd &>> /tmp/frontend.log
 ls -ltr &>> /tmp/frontend.log
 
 echo "starting frontend"
