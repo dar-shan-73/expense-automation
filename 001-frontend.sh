@@ -18,6 +18,15 @@ if [ "$ID" -ne 0 ] ; then
     exit 1
 fi
 
+echo -e "\e [32m checking proxy file is presense \e[0m"
+if [ -f proxy.conf ] ; then
+stat $?
+
+else
+    echo -e "\e [31m file is not present, ensure you provide the file \e [0m"
+    exit 1
+fi    
+
 echo "Installing nginx"
 dnf install nginx -y &>> $LOG
 stat $?     
