@@ -18,7 +18,7 @@ if [ "$ID" -ne 0 ] ; then
     exit 1
 fi
 
-echo  " checking proxy file's presense"
+echo  "checking proxy file's presense"
 if [ -f proxy.conf ] ; then
 stat $?
 
