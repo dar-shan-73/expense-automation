@@ -2,6 +2,7 @@
 
 ID=$(id -u)
 LOG="/tmp/frontend.log"
+COMPONENT="frontend"
 
 COLOR () {
     echo -e "\e[35m $* \e[0m"
@@ -38,7 +39,7 @@ dnf install nginx -y &>> $LOG
 stat $?     
 
 COLOR copying proxy file
-cp proxy.conf /etc/nginx/default.d/expense.conf &>> /tmp/frontend.log
+cp proxy.conf /etc/nginx/default.d/expense.conf &>> $LOG
 
 stat $?      
 
@@ -50,20 +51,20 @@ COLOR performing a cleanup
 rm -rf /usr/share/nginx/html/* &>> $LOG
 stat $? 
 
-COLOR downloading frontend
-curl -o /tmp/frontend.zip https://expense-web-app.s3.amazonaws.com/frontend.zip &>> /tmp/frontend.log
+COLOR downloading $COMPONENT
+curl -o /tmp/frontend.zip https://expense-web-app.s3.amazonaws.com/frontend.zip &>> $LOG
 stat $?  
 cd /usr/share/nginx/html
 
-COLOR extracting frontend
+COLOR extracting $COMPONENT
 unzip /tmp/frontend.zip &>> $LOG
 stat $? 
 
 pwd &>> $LOG
 ls -ltr &>> $LOG
 
-COLOR starting frontend
+COLOR starting $COMPONENT
 systemctl restart nginx &>> $LOG
 stat $? 
 
-echo -e "\n\t \e[33m *frontend installation is completed* \e[0m"
+echo -e "\n\t \e[33m *$COMPONENT installation is completed* \e[0m"
