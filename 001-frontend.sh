@@ -27,7 +27,6 @@ fi
 COLOR checking proxy file presense
 if [ -f proxy.conf ] ; then
 stat $?
-
 else
     echo -e "\e[31m proxy.conf file is not present, ensure you provide the file \e[0m"
     exit 1
