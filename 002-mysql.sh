@@ -2,6 +2,11 @@
 
 ID=$(id -u)
 LOG="/tmp/mysql.log"
+COMPONENT="mysql"
+
+COLOR () {
+    echo -e "\e[35m $* \e[0m"
+}
 
 stat () {
     if [ $1 -eq 0 ] ; then
@@ -19,8 +24,17 @@ if [ "$ID" -ne 0 ] ; then
     exit 1
 fi
 
+COLOR installing $COMPONENT
 dnf install mysql-server -y &>> $LOG
+
+COLOR enabling $COMPONENT
 systemctl enable mysqld  &>> $LOG
+
+COLOR starting $COMPONENT
 systemctl start mysqld  &>> $LOG
+
+COLOR configuring $COMPONENT root password
 mysql_secure_installation --set-root-pass ExpenseApp@1
-echo "**mysql installation completed**"
+
+
+echo -e "\n\t **mysql installation completed**"
