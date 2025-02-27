@@ -4,7 +4,7 @@ ID=$(id -u)
 LOG="/tmp/frontend.log"
 
 COLOR () {
-    echo -e "\e[32m $* \e[0m"
+    echo -e "\e[35m $* \e[0m"
 }
 
 stat () {
