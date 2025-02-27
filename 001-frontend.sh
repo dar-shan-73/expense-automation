@@ -23,7 +23,7 @@ if [ "$ID" -ne 0 ] ; then
     exit 1
 fi
 
-COLOR checking proxy file's presense
+COLOR checking proxy file presense
 if [ -f proxy.conf ] ; then
 stat $?
 
